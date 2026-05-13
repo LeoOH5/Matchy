@@ -377,7 +377,7 @@ _GG_STATIC_POLICIES: list[Policy] = [
         description="대학생·청년·신혼부부 대상 경기도 특화 공공임대주택. 시중시세의 60~80% 수준, 대중교통 요지·직주근접 입지. 2년마다 재계약(최장 6~20년).",
         age=AgeRange(min_age=19, max_age=39),
         regions=["경기도"],
-        application_url="https://apply.gh.or.kr",
+        application_url="https://www.gh.or.kr",
         tags=["행복주택", "공공임대", "주거", "청년", "신혼", "경기도"],
     ),
     # ── 청년 기존주택 전세임대 ───────────────────────────────────
@@ -398,12 +398,12 @@ _GG_STATIC_POLICIES: list[Policy] = [
         id="gg_static_gh_apply",
         name="GH 경기주택도시공사 공공임대·청약",
         source="GH 경기주택도시공사",
-        source_url="https://apply.gh.or.kr",
+        source_url="https://www.gh.or.kr",
         policy_type=PolicyType.LOAN_HOUSING,
         description="경기도 공공임대주택(청년·신혼·일반) 청약 및 임대 신청 통합 플랫폼. 경기행복주택, 영구임대, 국민임대 등 신청.",
         age=AgeRange(min_age=19, max_age=39),
         regions=["경기도"],
-        application_url="https://apply.gh.or.kr",
+        application_url="https://www.gh.or.kr",
         tags=["공공임대", "청약", "주거", "청년", "신혼", "경기도"],
     ),
 ]
