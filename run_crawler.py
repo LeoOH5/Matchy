@@ -10,6 +10,7 @@ from crawler.storage import init_db, bulk_upsert, get_stats
 from crawler.sources.housing_fund import crawl_housing_fund
 from crawler.sources.banks import crawl_banks
 from crawler.sources.youth_portal import crawl_youth_portal
+from crawler.sources.gyeonggi import crawl_gyeonggi
 
 
 def run(source: str = "all"):
@@ -42,6 +43,13 @@ def run(source: str = "all"):
         total_collected += len(policies)
         print(f"      -> {len(policies)}건 수집 완료\n")
 
+    if source in ("all", "gyeonggi"):
+        print("[4/4] 경기청년포털 크롤링 (경기도 한정)...")
+        policies = list(crawl_gyeonggi(max_pages_per_category=10))
+        bulk_upsert(policies)
+        total_collected += len(policies)
+        print(f"      -> {len(policies)}건 수집 완료\n")
+
     print(f"{'='*50}")
     print(f"  전체 수집 완료: {total_collected}건")
 
@@ -61,7 +69,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="청년 정책 크롤러")
     parser.add_argument(
         "--source",
-        choices=["all", "youth", "housing", "banks"],
+        choices=["all", "youth", "housing", "banks", "gyeonggi"],
         default="all",
         help="크롤링 대상 (기본값: all)",
     )
