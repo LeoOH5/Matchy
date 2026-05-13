@@ -79,7 +79,7 @@ BANK_PRODUCTS = [
         "id": "ibk_youth_jeonse",
         "name": "IBK 청년전세대출",
         "bank": "IBK기업은행",
-        "url": "https://www.ibk.co.kr/renew/main.ibk",
+        "url": "https://www.ibk.co.kr",
         "policy_type": PolicyType.LOAN_HOUSING,
         "tags": ["전세", "청년", "IBK기업은행", "대출"],
         "static_data": {
@@ -96,7 +96,7 @@ BANK_PRODUCTS = [
         "id": "kakao_youth_jeonse",
         "name": "카카오뱅크 청년 전월세보증금 대출",
         "bank": "카카오뱅크",
-        "url": "https://www.kakaobank.com/products/lease",
+        "url": "https://www.kakaobank.com",
         "policy_type": PolicyType.LOAN_HOUSING,
         "tags": ["전세", "월세", "청년", "카카오뱅크", "대출", "인터넷은행"],
         "static_data": {
