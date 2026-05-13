@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+dist/
+*.db
+*.sqlite3
+
+# Node
+node_modules/
+.next/
+.vercel/
+*.log
+npm-debug.log*
+
+# Env
+.env
+.env.local
+.env*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data
+data/*.json
+data/*.csv
