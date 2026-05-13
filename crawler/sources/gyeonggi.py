@@ -306,3 +306,110 @@ def crawl_gyeonggi(max_pages_per_category: int = 10) -> Generator[Policy, None, 
                 break
 
         print(f"[gyeonggi] {cat_name} 완료: {cat_count}건")
+
+
+# ---------------------------------------------------------------------------
+# 경기도 주요 정적 정책 (파일 기반, 공식 조건 기준)
+# 출처: 경기주거복지포털(housing.gg.go.kr), 잡아바(apply.jobaba.net), gg.go.kr
+# ---------------------------------------------------------------------------
+_GG_STATIC_POLICIES: list[Policy] = [
+    # ── 경기도 청년기본소득 ──────────────────────────────────────
+    Policy(
+        id="gg_static_basic_income",
+        name="경기도 청년기본소득",
+        source="경기도",
+        source_url="https://apply.jobaba.net",
+        policy_type=PolicyType.GRANT,
+        description="경기도에 1년 이상 주민등록을 둔 만 24세 청년에게 분기별 25만원(연 100만원) 경기지역화폐를 지원합니다. 소득·재산 무관.",
+        age=AgeRange(min_age=24, max_age=24),
+        regions=["경기도"],
+        application_url="https://apply.jobaba.net",
+        tags=["청년기본소득", "지역화폐", "청년", "경기도", "지원금"],
+    ),
+    # ── 경기도 대학생 학자금 대출이자 지원 ──────────────────────
+    Policy(
+        id="gg_static_student_loan_interest",
+        name="경기도 대학생 학자금 대출이자 지원",
+        source="경기도",
+        source_url="https://www.gg.go.kr",
+        policy_type=PolicyType.GRANT,
+        description="경기도 거주 대학생·대학원생·미취업 졸업생(졸업 후 2년 이내) 대상 한국장학재단 학자금 대출이자 전액 지원.",
+        age=AgeRange(min_age=19, max_age=34),
+        income=IncomeCondition(max_income=5000, description="연소득 5,000만원 이하(중위소득 200% 이하)"),
+        regions=["경기도"],
+        application_url="https://apply.jobaba.net",
+        tags=["학자금", "이자지원", "대학생", "청년", "경기도", "교육", "지원금"],
+    ),
+    # ── 경기도 청년 노동자 복지포인트 ───────────────────────────
+    Policy(
+        id="gg_static_worker_welfare_point",
+        name="경기도 중소기업 청년 노동자 지원사업 (복지포인트)",
+        source="경기도일자리재단",
+        source_url="https://youth.jobaba.net",
+        policy_type=PolicyType.GRANT,
+        description="경기도 소재 중소기업에 재직 중인 만 18~34세 청년 노동자에게 연간 최대 120만원 복지포인트(문화·여가·자기개발 사용)를 지원합니다.",
+        age=AgeRange(min_age=18, max_age=34),
+        income=IncomeCondition(max_income=3600, description="월 급여 300만원 이하"),
+        regions=["경기도"],
+        application_url="https://youth.jobaba.net",
+        tags=["복지포인트", "청년", "노동자", "중소기업", "경기도", "지원금", "취업"],
+    ),
+    # ── 경기 청년 매입임대 ───────────────────────────────────────
+    Policy(
+        id="gg_static_youth_buy_rent",
+        name="경기 청년 매입임대주택",
+        source="경기주거복지포털",
+        source_url="https://housing.gg.go.kr/html/51100.do",
+        policy_type=PolicyType.LOAN_HOUSING,
+        description="경기도가 매입한 주택을 저소득층 대학생·취업준비생·청년(19~39세)에게 시중시세 40~50% 수준으로 임대. 임대기간 최장 6년.",
+        age=AgeRange(min_age=19, max_age=39),
+        regions=["경기도"],
+        application_url="https://housing.gg.go.kr/html/51100.do",
+        tags=["임대주택", "매입임대", "주거", "청년", "경기도"],
+    ),
+    # ── 경기행복주택 ─────────────────────────────────────────────
+    Policy(
+        id="gg_static_happy_house",
+        name="경기행복주택 (청년·신혼부부)",
+        source="경기주거복지포털",
+        source_url="https://housing.gg.go.kr/html/51200.do",
+        policy_type=PolicyType.LOAN_HOUSING,
+        description="대학생·청년·신혼부부 대상 경기도 특화 공공임대주택. 시중시세의 60~80% 수준, 대중교통 요지·직주근접 입지. 2년마다 재계약(최장 6~20년).",
+        age=AgeRange(min_age=19, max_age=39),
+        regions=["경기도"],
+        application_url="https://apply.gh.or.kr",
+        tags=["행복주택", "공공임대", "주거", "청년", "신혼", "경기도"],
+    ),
+    # ── 청년 기존주택 전세임대 ───────────────────────────────────
+    Policy(
+        id="gg_static_youth_jeonse_rent",
+        name="경기 청년 기존주택 전세임대",
+        source="경기주거복지포털",
+        source_url="https://housing.gg.go.kr/html/51400.do",
+        policy_type=PolicyType.LOAN_HOUSING,
+        description="무주택 대학생·취업준비생·만 19~39세 청년 대상. 기존주택을 전세 계약 후 저렴하게 재임대. 1순위: 생계·의료·주거급여 수급자 가구.",
+        age=AgeRange(min_age=19, max_age=39),
+        regions=["경기도"],
+        application_url="https://housing.gg.go.kr/html/51400.do",
+        tags=["전세임대", "전세", "주거", "청년", "경기도", "대출"],
+    ),
+    # ── GH 공공임대·청약 ─────────────────────────────────────────
+    Policy(
+        id="gg_static_gh_apply",
+        name="GH 경기주택도시공사 공공임대·청약",
+        source="GH 경기주택도시공사",
+        source_url="https://apply.gh.or.kr",
+        policy_type=PolicyType.LOAN_HOUSING,
+        description="경기도 공공임대주택(청년·신혼·일반) 청약 및 임대 신청 통합 플랫폼. 경기행복주택, 영구임대, 국민임대 등 신청.",
+        age=AgeRange(min_age=19, max_age=39),
+        regions=["경기도"],
+        application_url="https://apply.gh.or.kr",
+        tags=["공공임대", "청약", "주거", "청년", "신혼", "경기도"],
+    ),
+]
+
+
+def crawl_gyeonggi_static() -> list[Policy]:
+    """파일 기반 경기도 주요 고정 정책 반환"""
+    print(f"[gyeonggi_static] 정적 정책 {len(_GG_STATIC_POLICIES)}건 로드")
+    return list(_GG_STATIC_POLICIES)

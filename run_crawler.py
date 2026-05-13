@@ -10,7 +10,7 @@ from crawler.storage import init_db, bulk_upsert, get_stats
 from crawler.sources.housing_fund import crawl_housing_fund
 from crawler.sources.banks import crawl_banks
 from crawler.sources.youth_portal import crawl_youth_portal
-from crawler.sources.gyeonggi import crawl_gyeonggi
+from crawler.sources.gyeonggi import crawl_gyeonggi, crawl_gyeonggi_static
 
 
 def run(source: str = "all"):
@@ -49,6 +49,12 @@ def run(source: str = "all"):
         bulk_upsert(policies)
         total_collected += len(policies)
         print(f"      -> {len(policies)}건 수집 완료\n")
+
+        print("[4-1] 경기도 주요 정적 정책 추가...")
+        static_policies = crawl_gyeonggi_static()
+        bulk_upsert(static_policies)
+        total_collected += len(static_policies)
+        print(f"      -> {len(static_policies)}건 추가 완료\n")
 
     print(f"{'='*50}")
     print(f"  전체 수집 완료: {total_collected}건")
