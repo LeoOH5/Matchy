@@ -93,7 +93,7 @@ const QS: QDef[] = [
     opts: [
       { value: "전세대출",  label: "전세 대출",      emoji: "🏠" },
       { value: "월세대출",  label: "월세 보증금",    emoji: "🏢" },
-      { value: "원룸대출",  label: "원룸 대출",      emoji: "🛏" },
+      { value: "주택구입",  label: "내집 마련",      emoji: "🔑" },
       { value: "창업지원",  label: "창업 지원금",    emoji: "🚀" },
       { value: "취업지원",  label: "취업 지원",      emoji: "💼" },
       { value: "교육비",    label: "교육비 지원",    emoji: "📚" },

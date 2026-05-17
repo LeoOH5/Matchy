@@ -20,6 +20,7 @@ const KEYWORD_MAP: Record<string, string> = {
   전세대출: "전세",
   월세대출: "월세",
   원룸대출: "전세",
+  주택구입: "구입",
   창업지원: "창업",
   취업지원: "취업",
   교육비: "교육",
@@ -108,15 +109,40 @@ export async function POST(req: NextRequest) {
       addUnique(policies);
     }
 
+    // 결과 없으면 나이·소득 필터 없이 전체 재검색 (fallback)
+    if (results.length === 0) {
+      const fallback = await searchPolicies({});
+      addUnique(fallback);
+    }
+
+    // 프로필 기반 사후 필터링
+    const filtered = results.filter((p) => {
+      const nameAndTags = p.name + " " + (p.tags ?? []).join(" ");
+
+      // 신혼부부 전용 정책 → 신혼부부만
+      if (/신혼/.test(nameAndTags) && profile.marital_status !== "newlywed") return false;
+
+      // 중소기업 재직자 전용 정책 → 중소·중견기업 재직자만
+      if (/중소기업/.test(nameAndTags) && profile.employment_type !== "sme") return false;
+
+      // 재직자 대상 정책(청년내일채움공제 등) → 직장인만
+      if (/내일채움|일자리도약장려금/.test(p.name) && profile.employment_status !== "employed") return false;
+
+      // 학자금대출 → 학생만
+      if (/학자금|국가장학금/.test(p.name) && profile.employment_status !== "student") return false;
+
+      return true;
+    });
+
     // 금리 낮은 순 → 한도 높은 순
-    results.sort((a, b) => {
+    filtered.sort((a, b) => {
       const ra = a.loan_rate_min ?? 99;
       const rb = b.loan_rate_min ?? 99;
       if (ra !== rb) return ra - rb;
       return (b.loan_amount_max ?? 0) - (a.loan_amount_max ?? 0);
     });
 
-    return NextResponse.json({ age, matched_count: results.length, policies: results });
+    return NextResponse.json({ age, matched_count: filtered.length, policies: filtered });
   } catch (e) {
     console.error(e);
     return NextResponse.json({ error: "서버 오류가 발생했어요" }, { status: 500 });
