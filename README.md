@@ -17,7 +17,7 @@
 
 ## 📺 소개 영상
 
-<video src="matchy-promo.mp4" autoplay loop muted playsinline width="100%"></video>
+<video src="https://github.com/LeoOH5/Matchy/raw/main/matchy-promo.mp4" autoplay loop muted playsinline width="100%"></video>
 
 > 청년 정책이 너무 복잡하게 흩어져 있나요? Matchy가 내 조건에 맞는 상품을 금리 낮은 순으로 즉시 정리해드립니다.
 
