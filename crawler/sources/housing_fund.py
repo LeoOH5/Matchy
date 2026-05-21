@@ -27,7 +27,7 @@ LOAN_PRODUCTS = [
     {
         "id": "youth_jeonse",
         "name": "청년전용 버팀목전세자금",
-        "url": "https://nhuf.molit.go.kr/FP/NH05/NH0503/NH050301/selectNH0503010000.jsp",
+        "url": "https://nhuf.molit.go.kr",
         "description": "만 19~34세 무주택 세대주 대상 전세자금 대출. 연소득 5천만원 이하.",
         "tags": ["전세", "주거", "청년", "대출", "버팀목"],
         "age": AgeRange(min_age=19, max_age=34),
@@ -42,7 +42,7 @@ LOAN_PRODUCTS = [
     {
         "id": "sme_youth_jeonse",
         "name": "중소기업취업청년 전월세보증금대출",
-        "url": "https://nhuf.molit.go.kr/FP/NH05/NH0503/NH050302/selectNH0503020000.jsp",
+        "url": "https://nhuf.molit.go.kr",
         "description": "중소·중견기업 재직 만 19~34세 청년 대상. 연소득 3500만원 이하.",
         "tags": ["전세", "월세", "청년", "대출", "중소기업"],
         "age": AgeRange(min_age=19, max_age=34),
@@ -57,7 +57,7 @@ LOAN_PRODUCTS = [
     {
         "id": "youth_monthly_rent",
         "name": "청년전용 보증부월세대출",
-        "url": "https://nhuf.molit.go.kr/FP/NH05/NH0503/NH050303/selectNH0503030000.jsp",
+        "url": "https://nhuf.molit.go.kr",
         "description": "만 19~34세 무주택 단독세대주 대상 월세보증금+월세 대출. 연소득 2천만원 이하.",
         "tags": ["월세", "주거", "청년", "대출"],
         "age": AgeRange(min_age=19, max_age=34),
@@ -72,7 +72,7 @@ LOAN_PRODUCTS = [
     {
         "id": "newlywed_jeonse",
         "name": "신혼부부전용 전세자금",
-        "url": "https://nhuf.molit.go.kr/FP/NH05/NH0503/NH050304/selectNH0503040000.jsp",
+        "url": "https://nhuf.molit.go.kr",
         "description": "혼인 7년 이내 무주택 세대주 대상. 합산 연소득 6천만원 이하.",
         "tags": ["전세", "신혼", "대출", "주거"],
         "age": AgeRange(min_age=19, max_age=45),
